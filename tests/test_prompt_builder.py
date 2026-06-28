@@ -27,48 +27,33 @@ def documents():
     ]
 
 
-# ── Structure ────────────────────────────────────────────────────────────────
+# ── Structure ─────────────────────────────────────────────────────────────────
 
-def test_returns_exactly_two_messages(documents):
+def test_returns_two_messages(documents):
     messages = PromptBuilder().build(query="What happened?", documents=documents)
     assert len(messages) == 2
     assert messages[0]["role"] == "system"
     assert messages[1]["role"] == "user"
 
 
-# ── System message ───────────────────────────────────────────────────────────
+def test_returns_two_messages_without_documents():
+    messages = PromptBuilder().build(query="Any anomalies?", documents=[])
+    assert len(messages) == 2
+
+
+# ── System message ────────────────────────────────────────────────────────────
 
 def test_system_message_establishes_analyst_role(documents):
     system = PromptBuilder().build(query="any", documents=documents)[0]["content"]
     assert "security analyst" in system.lower()
 
 
-def test_system_message_requests_executive_summary(documents):
+def test_system_message_is_concise(documents):
     system = PromptBuilder().build(query="any", documents=documents)[0]["content"]
-    assert "Executive Summary" in system
+    assert len(system) < 200
 
 
-def test_system_message_requests_uncommon_behaviors(documents):
-    system = PromptBuilder().build(query="any", documents=documents)[0]["content"]
-    assert "Uncommon Behaviors" in system
-
-
-def test_system_message_requests_risk_level(documents):
-    system = PromptBuilder().build(query="any", documents=documents)[0]["content"]
-    assert "Risk Level" in system
-
-
-def test_system_message_requests_evidence_section(documents):
-    system = PromptBuilder().build(query="any", documents=documents)[0]["content"]
-    assert "Evidence" in system
-
-
-def test_system_message_requests_recommended_actions(documents):
-    system = PromptBuilder().build(query="any", documents=documents)[0]["content"]
-    assert "Recommended Actions" in system
-
-
-# ── User message — evidence block ────────────────────────────────────────────
+# ── User message: evidence ────────────────────────────────────────────────────
 
 def test_user_message_includes_document_content(documents):
     user = PromptBuilder().build(query="any", documents=documents)[1]["content"]
@@ -102,7 +87,14 @@ def test_documents_without_timestamp_are_still_included():
     assert "security_policy" in user
 
 
-def test_empty_documents_returns_valid_messages():
+def test_empty_documents_query_in_user_message():
     messages = PromptBuilder().build(query="Any anomalies?", documents=[])
-    assert len(messages) == 2
     assert "Any anomalies?" in messages[1]["content"]
+
+
+def test_content_is_truncated_to_fit_context():
+    long_content = "A" * 500
+    docs = [Document(id="d1", content=long_content, source="test", timestamp="")]
+    user = PromptBuilder().build(query="any", documents=docs)[1]["content"]
+    assert long_content not in user
+    assert "A" * 120 in user

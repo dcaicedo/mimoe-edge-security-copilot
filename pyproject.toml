@@ -1,2 +1,6 @@
+[project]
+name = "mimoe-edge-security-copilot"
+description = "Edge AI Security Copilot powered by mimOE"
+
 [tool.pytest.ini_options]
 pythonpath = ["src"]

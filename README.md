@@ -1,166 +1,215 @@
-# Security Anomaly Agent
+# mimOE Edge Security Copilot
 
-A Python CLI agent that analyzes physical security events and generates structured anomaly reports using a local [mimOE](https://mimik.com) OpenAI-compatible API.
+> **An Agentic AI demonstration built with Python, Clean Architecture, Retrieval-Augmented Generation (RAG), and mimOE.**
 
-Built with **Clean Architecture** and **TDD** — 61 unit tests, zero real HTTP calls in the test suite.
+## Overview
 
----
+mimOE Edge Security Copilot is a local-first AI application that demonstrates how an intelligent Security Agent orchestrates multiple AI capabilities to analyze physical security events and generate structured anomaly reports using **mimOE**.
 
-## How it works
+The solution uses:
 
-```
-data/*.json + security_policy.txt
-        │
-        ▼
-FileSecurityDataRepository  ──► List[Document]
-        │
-        ▼
-SemanticRetriever  ◄──  MimoeEmbeddingClient  ──► POST /v1/embeddings
-  (cosine similarity)
-        │  top-K relevant docs
-        ▼
-PromptBuilder  ──► [system, user] messages
-        │
-        ▼
-MimoeLLMClient  ──► POST /v1/chat/completions
-        │
-        ▼
-  Structured Report
-```
+- Local embeddings (`nomic-embed-text`)
+- Local LLM (`SmolLM2`)
+- OpenAI-compatible APIs exposed by mimOE
+- Clean Architecture
+- Test-Driven Development (TDD)
+- Retrieval-Augmented Generation (RAG)
 
-1. Loads security events from JSON files and policy from a text file
-2. Embeds each document via the local LLM server
-3. Embeds the user query, retrieves the top-K most relevant documents using cosine similarity
-4. Builds a structured prompt with evidence, timestamps, and sources
-5. Calls the LLM and returns a report with five sections
+The current implementation simulates security systems using local JSON files. The architecture is intentionally designed so these data sources can later be replaced by distributed **mim** services without changing the application layer.
 
 ---
 
-## Report format
+# Project Goals
 
-```
-## Executive Summary
-## Uncommon Behaviors
-## Risk Level
-## Evidence
-## Recommended Actions
+The project demonstrates how an AI Agent can:
+
+- Aggregate heterogeneous security events
+- Retrieve relevant evidence through semantic search
+- Correlate events across different systems
+- Produce executive-ready anomaly reports
+- Execute entirely on-device using mimOE
+
+---
+
+# Solution Workflow
+
+1. Load physical security events.
+2. Generate embeddings for all documents.
+3. Perform semantic retrieval using cosine similarity.
+4. Select the Top-K most relevant documents.
+5. Build contextual prompts.
+6. Generate a structured report using SmolLM2.
+
+---
+
+# Edge AI Architecture with mimOE
+
+```text
+                        Guard
+                          │
+                          ▼
+                  Security Agent
+                          │
+                  GenerateSecurityReport
+                          │
+      ┌───────────────────┼───────────────────┐
+      ▼                   ▼                   ▼
+ File Repository   Semantic Retriever   Prompt Builder
+      │                   │
+      │                   ▼
+      │          MimoeEmbeddingClient
+      │            POST /v1/embeddings
+      │
+      └───────────────────┬───────────────────┘
+                          ▼
+                  MimoeLLMClient
+             POST /v1/chat/completions
+                          │
+                          ▼
+                       SmolLM2
+                          │
+                          ▼
+              Structured Security Report
 ```
 
 ---
 
-## Project structure
+# Agentic AI Evolution
 
+Current implementation:
+
+```text
+Security Agent
+ ├── File Repository
+ ├── Embedding Model
+ └── SmolLM2
 ```
+
+Future architecture:
+
+```text
+Security Agent
+      │
+ ┌────┼──────────────┐
+ ▼    ▼              ▼
+Vision Mim    Access Log Mim    Alarm Mim
+      │
+      ▼
+Embedding Mim
+      │
+      ▼
+SmolLM2
+      │
+      ▼
+Security Report
+```
+
+---
+
+# Data Sources
+
+- access_logs.json
+- door_events.json
+- camera_observations.json
+- alarm_logs.json
+- security_policy.txt
+
+---
+
+# Project Structure
+
+```text
 src/security_agent/
 ├── domain/
-│   ├── ports.py              # Document dataclass
-│   └── similarity.py         # cosine_similarity
 ├── application/
-│   ├── ports.py              # EmbeddingClient, LLMClient, SecurityDataRepository,
-│   │                         # Retriever, PromptBuilderPort (Protocols)
-│   ├── semantic_retriever.py # SemanticRetriever
-│   ├── prompt_builder.py     # PromptBuilder
-│   ├── generate_report.py    # GenerateSecurityReport (use case)
-│   └── main.py               # CLI entry point & composition root
-└── infrastructure/
-    ├── file_security_repository.py  # reads data/
-    ├── mimoe_embedding_client.py    # POST /v1/embeddings
-    └── mimoe_llm_client.py          # POST /v1/chat/completions
+├── infrastructure/
+└── main.py
 
 data/
-├── access_logs.json
-├── alarm_logs.json
-├── camera_observations.json
-├── door_events.json
-└── security_policy.txt
-
 tests/
-├── test_similarity.py
-├── test_semantic_retriever.py
-├── test_prompt_builder.py
-├── test_generate_report.py
-├── test_mimoe_embedding_client.py
-├── test_mimoe_llm_client.py
-└── test_file_security_repository.py
 ```
 
 ---
 
-## Setup
+# Engineering Highlights
+
+- Clean Architecture
+- SOLID Principles
+- Dependency Injection
+- Repository Pattern
+- Protocol-based Interfaces
+- Retrieval-Augmented Generation (RAG)
+- Semantic Search
+- Local AI inference with mimOE
+- Fully mocked unit tests
+- Infrastructure independent from business logic
+
+---
+
+# Configuration
+
+```env
+MIMOE_BASE_URL=http://localhost:8083/mimik-ai/openai/v1
+MIMOE_API_KEY=1234
+MIMOE_CHAT_MODEL=smollm2-360m
+MIMOE_EMBEDDING_MODEL=nomic-embed-text
+```
+
+---
+
+# Installation
 
 ```bash
-python3 -m venv .venv
+git clone https://github.com/dcaicedo/mimoe-edge-security-copilot.git
+cd mimoe-edge-security-copilot
+
+python -m venv .venv
 source .venv/bin/activate
-pip install -r requirements-dev.txt
-```
 
-Copy and configure environment variables:
-
-```bash
-cp .env.example .env
-```
-
-`.env` variables:
-
-| Variable | Description | Default |
-|---|---|---|
-| `MIMOE_BASE_URL` | Base URL of the local mimOE/Ollama server | `http://localhost:11434` |
-| `MIMOE_API_KEY` | API key (leave empty if not required) | _(empty)_ |
-| `MIMOE_CHAT_MODEL` | Chat completion model name | `llama3.2` |
-| `MIMOE_EMBEDDING_MODEL` | Embedding model name | `nomic-embed-text` |
-
----
-
-## Run
-
-```bash
-PYTHONPATH=src python -m security_agent.main "your query here"
-```
-
-Examples:
-
-```bash
-PYTHONPATH=src python -m security_agent.main \
-  "Were there any after-hours intrusions in the server room?"
-
-PYTHONPATH=src python -m security_agent.main \
-  "Correlate all camera and alarm events and identify the most critical threat" \
-  --top-k 10
-
-PYTHONPATH=src python -m security_agent.main \
-  "Summarize all forced-entry and tailgate events" \
-  --top-k 8 --data-dir ./data
-```
-
-Options:
-
-```
-positional:
-  query             Security question or investigation prompt
-
-optional:
-  --top-k N         Number of relevant documents to retrieve (default: 5)
-  --data-dir PATH   Path to data directory (default: ./data)
+pip install -r requirements.txt
 ```
 
 ---
 
-## Tests
+# Run
+
+```bash
+PYTHONPATH=src python -m security_agent.main \
+"Generate a security anomaly report for last night."
+```
+
+---
+
+# Testing
 
 ```bash
 pytest
-pytest -v                        # verbose
-pytest tests/test_similarity.py  # single file
+pytest -v
 ```
 
-All 61 tests run without a running LLM server — HTTP calls are mocked with `pytest-mock`.
+The test suite validates:
+
+- Cosine similarity
+- Semantic retrieval
+- Prompt generation
+- Use case orchestration
+- Repository layer
+- mimOE embedding client
+- mimOE chat client
+
+All HTTP calls are mocked, allowing tests to execute without a running LLM server.
 
 ---
 
-## Architecture notes
+# Technologies
 
-- **Domain** layer has zero external dependencies — only stdlib
-- **Application** layer depends only on domain — defines ports as `Protocol` classes
-- **Infrastructure** layer implements ports — all I/O lives here
-- **Dependency injection** throughout — `GenerateSecurityReport` receives all collaborators as constructor arguments, making it fully testable in isolation
-- The URL builder normalizes `MIMOE_BASE_URL` so both `http://host:port` and `http://host:port/path/v1` formats work correctly
+- Python
+- mimOE
+- SmolLM2
+- nomic-embed-text
+- OpenAI-compatible APIs
+- pytest
+- Clean Architecture
+- RAG
+- Semantic Search
+- Edge AI

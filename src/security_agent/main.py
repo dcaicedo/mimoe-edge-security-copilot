@@ -19,8 +19,8 @@ _DEFAULT_TOP_K    = 5
 
 def _parse_args(argv=None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        prog="security-agent",
-        description="Security Anomaly Report Agent — powered by mimOE",
+        prog="mimoe-edge-security-copilot",
+        description="mimOE Edge Security Copilot — Edge AI powered by mimOE",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=(
             "Examples:\n"
@@ -62,6 +62,9 @@ def _build_use_case(data_dir: Path) -> GenerateSecurityReport:
 def main(argv=None) -> None:
     args = _parse_args(argv)
 
+    print("\n" + "=" * 60)
+    print("mimOE Edge Security Copilot")
+    print("=" * 60)
     print(f"\nQuery : {args.query}")
     print(f"Top-K : {args.top_k}")
     print(f"Data  : {args.data_dir}\n")
