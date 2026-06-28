@@ -1,6 +1,16 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "mimoe-edge-security-copilot"
+version = "0.1.0"
 description = "Edge AI Security Copilot powered by mimOE"
+requires-python = ">=3.9"
+dependencies = [
+    "requests",
+    "python-dotenv"
+]
 
-[tool.pytest.ini_options]
-pythonpath = ["src"]
+[tool.setuptools.packages.find]
+where = ["src"]
