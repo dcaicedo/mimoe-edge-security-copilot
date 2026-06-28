@@ -1,0 +1,12 @@
+[
+  {"id": "cam-001", "timestamp": "2026-06-27T02:17:30Z", "camera_id": "CAM-SERVER-HALL", "observation": "individual loitering near server room door", "confidence": 0.91, "tags": ["person", "loitering"]},
+  {"id": "cam-002", "timestamp": "2026-06-27T02:19:00Z", "camera_id": "CAM-SERVER-HALL", "observation": "two individuals near server room door, one partially obscuring camera", "confidence": 0.87, "tags": ["person", "camera_obstruction", "tailgating_risk"]},
+  {"id": "cam-003", "timestamp": "2026-06-27T02:21:28Z", "camera_id": "CAM-SERVER-HALL", "observation": "authorized staff member enters followed immediately by second unidentified individual", "confidence": 0.95, "tags": ["person", "tailgate_confirmed"]},
+  {"id": "cam-004", "timestamp": "2026-06-27T02:47:08Z", "camera_id": "CAM-SERVER-INT",  "observation": "individual connecting device to server rack port", "confidence": 0.88, "tags": ["person", "hardware_interaction", "suspicious_activity"]},
+  {"id": "cam-005", "timestamp": "2026-06-27T08:05:10Z", "camera_id": "CAM-LOBBY",       "observation": "employee badge scan, normal entry", "confidence": 0.99, "tags": ["person", "normal"]},
+  {"id": "cam-006", "timestamp": "2026-06-27T09:47:30Z", "camera_id": "CAM-STAIR-03",    "observation": "hooded individual forces stairwell door, avoids looking at camera", "confidence": 0.82, "tags": ["person", "forced_entry", "face_obscured"]},
+  {"id": "cam-007", "timestamp": "2026-06-27T09:47:45Z", "camera_id": "CAM-STAIR-03",    "observation": "individual proceeds to floor 3 corridor, not seen on subsequent cameras", "confidence": 0.78, "tags": ["person", "tracking_lost"]},
+  {"id": "cam-008", "timestamp": "2026-06-27T11:42:05Z", "camera_id": "CAM-EXEC-HALL",   "observation": "executive and assistant enter exec suite, normal pattern", "confidence": 0.97, "tags": ["person", "normal"]},
+  {"id": "cam-009", "timestamp": "2026-06-27T23:57:55Z", "camera_id": "CAM-LOBBY",       "observation": "single employee enters building after midnight", "confidence": 0.94, "tags": ["person", "after_hours"]},
+  {"id": "cam-010", "timestamp": "2026-06-27T23:59:10Z", "camera_id": "CAM-SERVER-HALL", "observation": "same employee approaches server room, enters without waiting", "confidence": 0.93, "tags": ["person", "after_hours", "server_room_access"]}
+]

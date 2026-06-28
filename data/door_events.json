@@ -1,0 +1,14 @@
+[
+  {"id": "door-001", "timestamp": "2026-06-27T02:21:31Z", "door_id": "DOOR-SERVER-01", "event": "opened",          "held_open_seconds": null, "forced": false},
+  {"id": "door-002", "timestamp": "2026-06-27T02:21:55Z", "door_id": "DOOR-SERVER-01", "event": "closed",          "held_open_seconds": 24,   "forced": false},
+  {"id": "door-003", "timestamp": "2026-06-27T02:47:10Z", "door_id": "DOOR-SERVER-01", "event": "held_open_alarm", "held_open_seconds": 312,  "forced": false},
+  {"id": "door-004", "timestamp": "2026-06-27T02:47:10Z", "door_id": "DOOR-SERVER-01", "event": "closed",          "held_open_seconds": 312,  "forced": false},
+  {"id": "door-005", "timestamp": "2026-06-27T08:05:13Z", "door_id": "DOOR-MAIN-01",   "event": "opened",          "held_open_seconds": null, "forced": false},
+  {"id": "door-006", "timestamp": "2026-06-27T08:05:20Z", "door_id": "DOOR-MAIN-01",   "event": "closed",          "held_open_seconds": 7,    "forced": false},
+  {"id": "door-007", "timestamp": "2026-06-27T09:47:33Z", "door_id": "DOOR-STAIR-03",  "event": "opened",          "held_open_seconds": null, "forced": true},
+  {"id": "door-008", "timestamp": "2026-06-27T09:47:33Z", "door_id": "DOOR-STAIR-03",  "event": "forced_open",     "held_open_seconds": null, "forced": true},
+  {"id": "door-009", "timestamp": "2026-06-27T11:42:09Z", "door_id": "DOOR-EXEC-01",   "event": "opened",          "held_open_seconds": null, "forced": false},
+  {"id": "door-010", "timestamp": "2026-06-27T11:42:22Z", "door_id": "DOOR-EXEC-01",   "event": "closed",          "held_open_seconds": 13,   "forced": false},
+  {"id": "door-011", "timestamp": "2026-06-27T23:58:03Z", "door_id": "DOOR-MAIN-01",   "event": "opened",          "held_open_seconds": null, "forced": false},
+  {"id": "door-012", "timestamp": "2026-06-27T23:58:46Z", "door_id": "DOOR-SERVER-01", "event": "opened",          "held_open_seconds": null, "forced": false}
+]

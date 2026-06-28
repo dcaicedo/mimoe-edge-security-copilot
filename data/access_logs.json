@@ -1,0 +1,14 @@
+[
+  {"id": "acc-001", "timestamp": "2026-06-27T02:17:43Z", "user_id": "USR-089", "badge_id": "BDG-089", "door_id": "DOOR-SERVER-01", "result": "denied", "reason": "outside_allowed_hours"},
+  {"id": "acc-002", "timestamp": "2026-06-27T02:18:01Z", "user_id": "USR-089", "badge_id": "BDG-089", "door_id": "DOOR-SERVER-01", "result": "denied", "reason": "outside_allowed_hours"},
+  {"id": "acc-003", "timestamp": "2026-06-27T02:18:19Z", "user_id": "USR-089", "badge_id": "BDG-089", "door_id": "DOOR-SERVER-01", "result": "denied", "reason": "outside_allowed_hours"},
+  {"id": "acc-004", "timestamp": "2026-06-27T02:19:05Z", "user_id": "UNKNOWN", "badge_id": "BDG-???", "door_id": "DOOR-SERVER-01", "result": "denied", "reason": "unrecognized_badge"},
+  {"id": "acc-005", "timestamp": "2026-06-27T02:21:30Z", "user_id": "UNKNOWN", "badge_id": "BDG-???", "door_id": "DOOR-SERVER-01", "result": "granted", "reason": "tailgate_detected"},
+  {"id": "acc-006", "timestamp": "2026-06-27T08:05:12Z", "user_id": "USR-012", "badge_id": "BDG-012", "door_id": "DOOR-MAIN-01", "result": "granted", "reason": null},
+  {"id": "acc-007", "timestamp": "2026-06-27T08:31:44Z", "user_id": "USR-034", "badge_id": "BDG-034", "door_id": "DOOR-MAIN-01", "result": "granted", "reason": null},
+  {"id": "acc-008", "timestamp": "2026-06-27T09:15:00Z", "user_id": "USR-056", "badge_id": "BDG-056", "door_id": "DOOR-LAB-02",   "result": "denied", "reason": "insufficient_clearance"},
+  {"id": "acc-009", "timestamp": "2026-06-27T09:15:22Z", "user_id": "USR-056", "badge_id": "BDG-056", "door_id": "DOOR-LAB-02",   "result": "denied", "reason": "insufficient_clearance"},
+  {"id": "acc-010", "timestamp": "2026-06-27T11:42:08Z", "user_id": "USR-101", "badge_id": "BDG-101", "door_id": "DOOR-EXEC-01",  "result": "granted", "reason": null},
+  {"id": "acc-011", "timestamp": "2026-06-27T23:58:02Z", "user_id": "USR-034", "badge_id": "BDG-034", "door_id": "DOOR-MAIN-01",  "result": "granted", "reason": null},
+  {"id": "acc-012", "timestamp": "2026-06-27T23:58:45Z", "user_id": "USR-034", "badge_id": "BDG-034", "door_id": "DOOR-SERVER-01","result": "granted", "reason": null}
+]

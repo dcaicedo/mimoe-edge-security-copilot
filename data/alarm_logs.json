@@ -1,0 +1,9 @@
+[
+  {"id": "alm-001", "timestamp": "2026-06-27T02:21:35Z", "alarm_type": "tailgate_detected",   "location": "DOOR-SERVER-01",  "severity": "high",     "acknowledged": false, "resolved": false, "notes": null},
+  {"id": "alm-002", "timestamp": "2026-06-27T02:47:10Z", "alarm_type": "door_held_open",      "location": "DOOR-SERVER-01",  "severity": "medium",   "acknowledged": false, "resolved": false, "notes": null},
+  {"id": "alm-003", "timestamp": "2026-06-27T02:47:15Z", "alarm_type": "suspicious_activity", "location": "CAM-SERVER-INT",  "severity": "critical", "acknowledged": false, "resolved": false, "notes": "camera detected hardware interaction with server rack"},
+  {"id": "alm-004", "timestamp": "2026-06-27T09:47:33Z", "alarm_type": "forced_entry",        "location": "DOOR-STAIR-03",   "severity": "critical", "acknowledged": true,  "resolved": false, "notes": "security dispatched, individual not located"},
+  {"id": "alm-005", "timestamp": "2026-06-27T09:15:05Z", "alarm_type": "repeated_access_denial", "location": "DOOR-LAB-02", "severity": "low",      "acknowledged": true,  "resolved": true,  "notes": "USR-056 does not have lab clearance, HR notified"},
+  {"id": "alm-006", "timestamp": "2026-06-27T23:58:00Z", "alarm_type": "after_hours_access",  "location": "DOOR-MAIN-01",   "severity": "medium",   "acknowledged": false, "resolved": false, "notes": null},
+  {"id": "alm-007", "timestamp": "2026-06-27T23:58:50Z", "alarm_type": "after_hours_access",  "location": "DOOR-SERVER-01", "severity": "high",     "acknowledged": false, "resolved": false, "notes": "same user accessed server room 48 seconds after entering building"}
+]

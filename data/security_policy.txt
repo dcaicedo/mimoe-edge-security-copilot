@@ -1,0 +1,35 @@
+PHYSICAL SECURITY POLICY — ACME CORP
+Effective: 2026-01-01 | Classification: Internal
+
+== ACCESS HOURS ==
+- Standard access (offices, lobbies): Mon–Fri 07:00–22:00 local time.
+- Server room (DOOR-SERVER-*): authorized personnel only, 08:00–18:00. After-hours access requires prior written approval from IT Security.
+- Executive suite (DOOR-EXEC-*): authorized personnel only, any hour.
+- Labs (DOOR-LAB-*): Level-3 clearance required. Access attempts by non-cleared personnel must be reported to Security within 1 hour.
+
+== TAILGATING ==
+- Tailgating is strictly prohibited at all controlled-access doors.
+- Any tailgate alarm (detected by access control or camera) must be investigated within 15 minutes.
+- Unresolved tailgate events at server rooms escalate to CRITICAL after 30 minutes.
+
+== FORCED ENTRY ==
+- Any forced-open door event triggers an immediate CRITICAL alarm.
+- Security personnel must respond within 5 minutes and sweep the affected floor.
+- Incident report required within 24 hours.
+
+== AFTER-HOURS ACTIVITY ==
+- After-hours building entry must be logged and cross-checked against approved overtime list.
+- Server room access outside approved hours is treated as a potential security breach until verified.
+
+== DEVICE POLICY ==
+- Connecting unauthorized hardware to server infrastructure is a Severity-1 violation.
+- Camera detection of hardware interaction in server rooms must be escalated to CRITICAL immediately.
+
+== BADGE POLICY ==
+- Lost or unrecognized badges must be reported immediately.
+- Three consecutive denied attempts on a single door within 5 minutes triggers a medium alarm.
+- Denied attempts followed by a successful tailgate escalates to HIGH.
+
+== REPORTING ==
+- CRITICAL and HIGH alarms unacknowledged after 15 minutes auto-escalate to the on-call security manager.
+- All alarms must be resolved with written disposition within 8 hours.
